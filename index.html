@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MB Foods | Global Food Trading</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        /* --- CSS REMAINS UNCHANGED --- */
+        :root {
+            --primary-color: #202020; 
+            --secondary-color: #404040; 
+            --accent-color: #7c8f69; 
+            --text-light: #F8FAFC;
+            --text-gray: #a3a3a3;
+            --text-dark: #1E293B;
+            --bg-light: #FFFFFF;
+            --bg-gray: #F1F5F9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { line-height: 1.6; color: var(--text-dark); background-color: var(--bg-light); }
+        
+        /* Typography */
+        h1, h2, h3, h4 { font-weight: 600; margin-bottom: 1rem; color: var(--primary-color); }
+        .highlight { color: var(--accent-color); }
+
+        /* Navigation */
+        nav { background-color: var(--primary-color); padding: 1rem 5%; position: fixed; width: 100%; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo img { width: 100px; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 2rem; }
+        nav a { color: var(--text-light); text-decoration: none; font-size: 0.95rem; opacity: 0.9; transition: opacity 0.3s; }
+        nav a:hover { opacity: 1; color: var(--accent-color); }
+
+        /* Hero */
+        .hero { height: 80vh; background-image: url(img/capa2.png); background-position: center; background-size: cover; display: flex; align-items: center; justify-content: flex-start; text-align: center; padding: 0 1rem; margin-top: 60px; }
+        .hero-content { max-width: 600px; margin-left: 150px;}
+        .hero h1 { color: var(--text-light); font-size: 3rem; line-height: 1.2; margin-bottom: 1.5rem; }
+        .hero p { color: var(--text-gray); font-size: 1.25rem; margin-bottom: 2.5rem; font-weight: 300; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .btn-cta { background-color: var(--accent-color); color: white; padding: 1rem 2.5rem; text-decoration: none; font-weight: 600; border-radius: 4px; transition: background 0.3s; border: none; }
+        .btn-cta:hover { background-color: #6c904b; }
+
+        /* Structure Section */
+        .structure { padding: 5rem 5%; background-color: var(--bg-light); }
+        .section-header { text-align: center; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .section-header p { color: var(--secondary-color); font-size: 1.1rem; }
+        .grid-structure { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card-structure { background: var(--bg-gray); padding: 2rem; border-left: 5px solid var(--primary-color); border-radius: 4px; }
+        .card-structure.strategic { border-left-color: var(--accent-color); }
+        .card-structure h3 { font-size: 1.4rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .card-structure ul { list-style: none; margin-top: 1rem; }
+        .card-structure li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; color: var(--secondary-color); }
+        
+        /* List Icons */
+        .card-structure i.bi { color: var(--accent-color); font-size: 1.2rem; min-width: 25px; }
+
+        /* Products Section */
+        .products-section { padding: 5rem 5%; background-color: var(--bg-gray); }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .product-feature-card { background: var(--bg-light); padding: 2.5rem 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--accent-color); text-align: center; transition: transform 0.3s ease; }
+        .product-feature-card:hover { transform: translateY(-5px); }
+        .product-feature-card i.bi { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1rem; display: inline-block; }
+        .product-feature-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.3rem; }
+        .product-feature-card p { color: var(--secondary-color); font-size: 0.95rem; }
+
+        /* Solutions Section */
+        .solutions { padding: 5rem 5%; background-color: var(--primary-color); color: var(--text-light); }
+        .solutions h2 { color: var(--text-light); text-align: center; }
+        .solutions .section-header p { color: var(--text-gray); }
+        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .solution-item { background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s; }
+        .solution-item:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.1); }
+        .solution-item h3 { color: var(--accent-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+        .solution-item i.bi { font-size: 1.5rem; }
+        .solution-item p { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* Footer */
+        footer { background-color: var(--secondary-color); color: var(--text-gray); padding: 4rem 5% 2rem 5%; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-col h4 { color: var(--text-light); margin-bottom: 1.5rem; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px;}
+        .footer-col i.bi { color: var(--accent-color); font-size: 1rem; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .grid-structure { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+            .hero-content { margin-left: 0; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><img src="img/mbfoods_logo.png" alt="logo"></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#estrutura">Global Structure</a></li>
+            <li><a href="#produtos">Products</a></li>
+            <li><a href="#solucoes">Sourcing</a></li>
+            <li><a href="#contato">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>MB foods</h1>
+            <p>Uruguay-based food trading company. Commercial and logistics solutions for the international meat market with global presence.</p>
+            <a href="#solucoes" class="btn-cta">Contact Us</a>
+        </div>
+    </header>
+
+    <section id="estrutura" class="structure">
+        <div class="section-header">
+            <h2>Our Presence</h2>
+            <p>MB Foods acts as the link between suppliers and buyers, combining operational bases with strategic branches established in key markets.</p>
+        </div>
+
+        <div class="grid-structure">
+            <div class="card-structure">
+                <h3>Operational Bases</h3>
+                <p>Where our team works directly on logistics, sourcing, and daily management.</p>
+                <ul>
+                    <li><i class="bi bi-buildings-fill"></i> <strong>Uruguay (HQ):</strong> Administrative Headquarters & Trading Desk.</li>
+                    <li><i class="bi bi-truck-front-fill"></i> <strong>Chile:</strong> Operational Branch & Regional Distribution.</li>
+                </ul>
+            </div>
+
+            <div class="card-structure strategic">
+                <h3>Corporate Branches</h3>
+                <p>Locally established companies to facilitate global transactions and contracts.</p>
+                <ul>
+                    <li><i class="bi bi-geo-alt-fill"></i> <strong>United States:</strong> Miami Branch.</li>
+                    <li><i class="bi bi-geo-alt-fill"></i> <strong>United Kingdom:</strong> London Branch.</li>
+                </ul>
+                <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8; border-top: 1px solid #ccc; padding-top: 0.5rem;">
+                    *Entities established to enable direct commercial operations in these jurisdictions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="produtos" class="products-section">
+        <div class="section-header">
+            <h2>Our Products & Excellence</h2>
+            <p>MB FOODS is committed to offering a diverse range of products and cuts, combining flavor, quality, and safety at every stage of the process.</p>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-feature-card">
+                <i class="bi bi-shield-check"></i>
+                <h3>International Standards</h3>
+                <p>We work with selected ingredients and uphold the highest international quality standards in everything we do.</p>
+            </div>
+            <div class="product-feature-card">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+                <h3>Variety of Cuts</h3>
+                <p>We offer a diverse portfolio to satisfy our customers, from industrial cuts to premium options for retail.</p>
+            </div>
+            <div class="product-feature-card">
+                <i class="bi bi-diagram-3-fill"></i>
+                <h3>Global Connection</h3>
+                <p>With commercial partners in over 50 countries, we combine experience and credibility to offer complete and integrated solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucoes" class="solutions">
+        <div class="section-header">
+            <h2>Sourcing & Quality</h2>
+            <p>We are not limited by borders. We identify and enable the best protein, from any origin to any destination.</p>
+        </div>
+
+        <div class="solutions-grid">
+            <div class="solution-item">
+                <h3><i class="bi bi-globe-americas"></i> Multi-Origin</h3>
+                <p>We identify the best producers in various countries to meet the specific price and quality demands of your market.</p>
+            </div>
+            <div class="solution-item">
+                <h3><i class="bi bi-box-seam-fill"></i> Integrated Logistics</h3>
+                <p>Complete Supply Chain management, ensuring the product leaves the plant and reaches the destination port with all sanitary documentation.</p>
+            </div>
+            <div class="solution-item">
+                <h3><i class="bi bi-file-earmark-text-fill"></i> Global Compliance</h3>
+                <p>Our international branches allow for greater contractual flexibility and agility in complex transactions across continents.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo"><img src="img/mbfoods_logo.png" alt="logo"></div>
+                <p style="margin-top: 1rem;">Global trading focused on efficiency, transparency, and food safety.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Our Branches</h4>
+                <ul>
+                    <li><i class="bi bi-caret-right-fill"></i> <strong>Uruguay:</strong> Headquarters</li>
+                    <li><i class="bi bi-caret-right-fill"></i> <strong>Chile:</strong> Operational Branch</li>
+                    <li><i class="bi bi-caret-right-fill"></i> <strong>USA:</strong> Corporate Branch</li>
+                    <li><i class="bi bi-caret-right-fill"></i> <strong>UK:</strong> Corporate Branch</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="bi bi-envelope-fill"></i> comercial@mbfoods.uy</li>
+                    <li><i class="bi bi-telephone-fill"></i> +598 2 000 0000</li>
+                    <li><i class="bi bi-geo-alt-fill"></i> Montevideo, Uruguay</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 MB Foods. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
